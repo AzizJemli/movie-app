@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Moviecard from "../movieCard/MovieCard";
 import "./movieslist.css";
 
@@ -11,7 +12,13 @@ const Movielist = ({ movies, textFilter ,starsRate}) => {
           movie.title.toLowerCase().includes(textFilter.toLowerCase())
         )
         .map((movie) => (
-          <Moviecard movie={movie} key={movie.id}/>
+          <Link
+            to={`/MovieTrailer/${movie.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            {" "}
+            <Moviecard movie={movie} key={movie.id} />{" "}
+          </Link>
         ))}
     </div>
   );

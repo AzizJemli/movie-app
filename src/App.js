@@ -1,11 +1,13 @@
 
 import "./App.css";
-import { useState , useEffect } from "react";
+import { useState} from "react";
 import Filter from "./components/Filter/Filter";
 import Movielist from "./components/MoviesList/Movieslist";
 import NavBar from "./components/NavBar/NavBar";
 import { data } from "./data.js";
-import {Container} from "react-bootstrap"
+import {Container} from "react-bootstrap";
+import { Routes, Route } from "react-router-dom";
+import MovieTrailer from "./components/MovieTrailer/MovieTrailer";
 function App() {
   
 const [textFilter, setTextFilter] = useState("")
@@ -23,10 +25,17 @@ const [starsRate, setStarsRate] = useState(0)
     <div className="app">
       
       <NavBar addMovie={addMovie}/>
-      <Container>
+      <Routes>
+      <Route path="/" element={<Container>
       <Filter setTextFilter={setTextFilter} setStarsRate={setStarsRate}/>
       <Movielist movies={movies} textFilter={textFilter} starsRate={starsRate}/>
-      </Container>
+      </Container>}/>
+      <Route
+          path="/MovieTrailer/:movieid"
+          element={<MovieTrailer/>}/>
+        
+      </Routes>
+
     </div>
   );
 }
